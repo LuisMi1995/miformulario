@@ -1,4 +1,5 @@
 <?php
+//archivo procesar_login.php
 // Incluir el archivo de conexión
 require_once 'log.php';
 session_start();
@@ -20,13 +21,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $storedPassword = $row["contrasena"];
 
-        // Verificar la contraseña
-        if ($password == $storedPassword) {
-            // Inicio de sesión exitoso, redirigir a la página de inicio
-            $_SESSION["correo"] = $username;
-            header("Location: bienvenido.php");
-            exit();
-        }
+       // Verificar la contraseña
+if ($password == $storedPassword) {
+    // Inicio de sesión exitoso, guardar los datos del usuario en la sesión
+    $_SESSION["Id"] = $row["Id"];
+    $_SESSION["nombres"] = $row["nombres"];
+    $_SESSION["apellidos"] = $row["apellidos"];
+    $_SESSION["correo"] = $username;
+    $_SESSION["usuario"] = $row["usuario"];
+
+    // Verificar si existe la columna ruta_imagen en el resultado de la consulta
+    if (isset($row["ruta_imagen"])) {
+        $_SESSION["ruta_imagen"] = $row["ruta_imagen"];
+    } else {
+        // Si no existe, asignar la ruta predeterminada
+        $_SESSION["ruta_imagen"] = "img/avatar.jpg";
+    }
+
+    // Redirigir a la página personalizada
+    header("Location: plantilla.php");
+    exit();
+}
     }
 
     // Credenciales incorrectas, asignar el mensaje de alerta

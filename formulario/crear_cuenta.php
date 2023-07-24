@@ -20,6 +20,11 @@
       
       <label for="contrasena">Contraseña:</label>
       <input type="password" id="contrasena" name="contrasena" required><br><br>
+
+      <label for="usuario">Usuario:</label>
+      <input type="text" id="usuario" name="usuario"><br><br>
+
+      
       
             
       <input type="submit" value="Crear cuenta" class="create-account-button">

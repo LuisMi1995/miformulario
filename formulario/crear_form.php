@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $apellidos = $_POST['apellidos'];
   $correo = $_POST['correo'];
   $contrasena = $_POST['contrasena'];
+  $usuario = $_POST['usuario'];
 
   // Crear una conexión a la base de datos utilizando mysqli
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // Construir y ejecutar la consulta SQL para insertar los datos
-  $sql = "INSERT INTO formulario (nombres, apellidos, correo, contrasena) VALUES ('$nombres', '$apellidos', '$correo', '$contrasena')";
+  $sql = "INSERT INTO formulario (nombres, apellidos, correo, contrasena, usuario) 
+  VALUES ('$nombres', '$apellidos', '$correo', '$contrasena', '$usuario')";
 
   if ($conn->query($sql) === TRUE) {
     // Redirigir al archivo login.html

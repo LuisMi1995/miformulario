@@ -1,4 +1,5 @@
 <?php
+//archivo log.php
 $servername = "localhost";
 $username = "root";
 $password = "";
